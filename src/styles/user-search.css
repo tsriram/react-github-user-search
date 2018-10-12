@@ -1,4 +1,15 @@
 .user-search {
-  display: flex;
-  background-color: grey;
+  text-align: center;
+  min-height: 100vh;
+  padding: 30px;
+}
+
+.search-input {
+  width: 500px;
+  padding: 6px 8px;
+  margin-right: 20px;
+}
+
+.submit-btn {
+  padding: 6px 8px;
 }
