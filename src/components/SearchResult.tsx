@@ -26,9 +26,11 @@ const SearchResult: React.SFC<SearchResultProps> = props => {
           <span className="user-name">{name}</span>
         </div>
 
-        <div className="row">
-          <div className="user-bio">{bio}</div>
-        </div>
+        {bio && (
+          <div className="row">
+            <div className="user-bio">{bio}</div>
+          </div>
+        )}
 
         <div className="row">
           {location && <div className="user-location">{location}</div>}
