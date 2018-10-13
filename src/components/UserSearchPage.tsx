@@ -1,4 +1,4 @@
-import { SearchUsersQuery } from "src/queries";
+import { SearchUsersQuery, SearchResults } from "src/queries";
 import { ApolloClient } from "apollo-boost";
 import SearchResult from "./SearchResult";
 import { withApollo } from "react-apollo";
@@ -6,25 +6,6 @@ import SearchBar from "./SearchBar";
 import * as React from "react";
 
 import "../styles/user-search.css";
-
-interface SearchNode {
-  readonly node: {
-    readonly name: string;
-    readonly email: string;
-    readonly bio: string;
-    readonly login: string;
-    readonly avatarUrl: string;
-    readonly location: string;
-    readonly url: string;
-  };
-}
-
-interface SearchResults {
-  readonly search: {
-    readonly userCount: number | undefined;
-    readonly edges: ReadonlyArray<SearchNode>;
-  };
-}
 
 interface SearchPageState {
   readonly query: string;

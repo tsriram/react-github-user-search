@@ -20,3 +20,22 @@ export const SearchUsersQuery = gql`
     }
   }
 `;
+
+interface SearchNode {
+  readonly node: {
+    readonly name: string;
+    readonly email: string;
+    readonly bio: string;
+    readonly login: string;
+    readonly avatarUrl: string;
+    readonly location: string;
+    readonly url: string;
+  };
+}
+
+export interface SearchResults {
+  readonly search: {
+    readonly userCount: number | undefined;
+    readonly edges: ReadonlyArray<SearchNode>;
+  };
+}
