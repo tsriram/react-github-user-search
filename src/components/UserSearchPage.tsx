@@ -1,11 +1,36 @@
+import { Query } from "react-apollo";
+import SearchBar from "./SearchBar";
 import * as React from "react";
+import gql from "graphql-tag";
 
 import "../styles/user-search.css";
-import SearchBar from "./SearchBar";
+import SearchResult from "./SearchResult";
 
 interface SearchPageState {
   readonly query: string;
+  readonly shouldFetchData: boolean;
 }
+
+const searchUsersQuery = gql`
+  {
+    search(type: USER, query: "kentcdodds", first: 10) {
+      userCount
+      edges {
+        node {
+          ... on User {
+            name
+            email
+            bio
+            login
+            avatarUrl
+            location
+            url
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default class UserSearchPage extends React.Component<
   {},
@@ -14,7 +39,8 @@ export default class UserSearchPage extends React.Component<
   constructor(props: any) {
     super(props);
     this.state = {
-      query: ""
+      query: "",
+      shouldFetchData: false
     };
   }
 
@@ -26,19 +52,44 @@ export default class UserSearchPage extends React.Component<
 
   handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const query = this.state.query;
-    console.log("query: ", query);
+    this.setState({
+      shouldFetchData: true
+    });
   };
 
   public render() {
     return (
       <div className="user-search page-container">
-        <h2>User Search</h2>
+        <h2 className="title">GitHub User Search</h2>
         <SearchBar
           query={this.state.query}
           onChange={this.handleQueryChange}
           onSubmit={this.handleSubmit}
         />
+        {this.state.shouldFetchData && (
+          <Query query={searchUsersQuery}>
+            {({ loading, error, data }) => {
+              if (loading) {
+                return <h3>Loading...</h3>;
+              } else if (error) {
+                return <h3>Error loading search results</h3>;
+              } else {
+                return (
+                  <div>
+                    {data.search.edges.map((edge: any) => {
+                      return (
+                        <SearchResult
+                          userNode={edge.node}
+                          key={edge.node.login}
+                        />
+                      );
+                    })}
+                  </div>
+                );
+              }
+            }}
+          </Query>
+        )}
       </div>
     );
   }

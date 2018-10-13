@@ -1,7 +1,14 @@
 .user-search {
-  text-align: center;
   min-height: 100vh;
   padding: 30px;
+}
+
+.title {
+  text-align: center;
+}
+
+.search-bar {
+  text-align: center;
 }
 
 .search-input {
@@ -12,4 +19,60 @@
 
 .submit-btn {
   padding: 6px 8px;
+}
+
+.search-result {
+  display: flex;
+  padding: 24px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 3px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.row {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  margin-left: 20px;
+}
+
+.user-login {
+  padding: 3px;
+  font-style: normal;
+  font-weight: 600;
+  border-radius: 3px;
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.user-login:hover {
+  text-decoration: underline;
+}
+
+.user-name {
+  font-size: 16px;
+  color: #24292e;
+  margin-left: 10px;
+}
+
+.user-bio {
+  font-size: 14px;
+}
+
+.user-location,
+.user-email {
+  color: #586069;
+  font-size: 12px;
+}
+
+.user-location {
+  margin-right: 10px;
 }
