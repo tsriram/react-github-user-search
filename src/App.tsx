@@ -16,7 +16,14 @@ class App extends React.Component {
   public render() {
     return (
       <ApolloProvider client={client}>
-        <UserSearchPage />
+        {gitHubToken ? (
+          <UserSearchPage />
+        ) : (
+          <p>
+            Please provide a valid GitHub access token. Check README for more
+            info.
+          </p>
+        )}
       </ApolloProvider>
     );
   }
