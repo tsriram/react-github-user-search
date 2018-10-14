@@ -20,6 +20,9 @@ GraphQL API.
 
 ## Notes
 
+- To run the app, run `yarn start` (or `npm run start`). Make sure you've
+  installed all dependencies by running `yarn install` or `npm install`.
+
 - This app requires a valid GitHub access token to be set as an environment
   variable. You can generate a new access token by following
   [this article](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
