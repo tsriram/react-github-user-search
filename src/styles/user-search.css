@@ -91,3 +91,10 @@
 .pagination-button[disabled] {
   cursor: not-allowed;
 }
+
+.react-icons-go {
+  vertical-align: middle;
+  height: 16px;
+  width: 16px;
+  margin-right: 4px;
+}
