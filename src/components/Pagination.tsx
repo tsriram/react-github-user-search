@@ -14,10 +14,18 @@ const Pagination: React.SFC<PaginationProps> = ({
 }) => {
   return (
     <div className="pagination">
-      <button disabled={!pageInfo.hasPreviousPage} onClick={onPreviousClick}>
+      <button
+        disabled={!pageInfo.hasPreviousPage}
+        onClick={onPreviousClick}
+        className="pagination-button"
+      >
         Previous
       </button>
-      <button disabled={!pageInfo.hasNextPage} onClick={onNextClick}>
+      <button
+        disabled={!pageInfo.hasNextPage}
+        onClick={onNextClick}
+        className="pagination-button"
+      >
         Next
       </button>
     </div>

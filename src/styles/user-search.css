@@ -1,5 +1,4 @@
 .user-search {
-  min-height: 100vh;
   padding: 30px;
 }
 
@@ -76,4 +75,19 @@
 
 .user-location {
   margin-right: 10px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-button {
+  padding: 8px 12px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.pagination-button[disabled] {
+  cursor: not-allowed;
 }

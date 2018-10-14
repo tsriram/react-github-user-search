@@ -123,6 +123,7 @@ class UserSearchPage extends React.Component<SearchPageProps, SearchPageState> {
     if (data.search.userCount !== undefined && data.search.userCount > 0) {
       return (
         <div>
+          <h3>{data.search.userCount.toLocaleString()} Users</h3>
           {data.search.edges.map((edge: any) => {
             return <SearchResult userNode={edge.node} key={edge.node.login} />;
           })}

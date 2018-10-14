@@ -20,7 +20,7 @@ const SearchResult: React.SFC<SearchResultProps> = props => {
       <img className="avatar" alt={name} src={`${avatarUrl}&s=96`} />
       <div className="user-info">
         <div className="row">
-          <a className="user-login" href={url}>
+          <a className="user-login" href={url} target="_blank">
             {login}
           </a>
           <span className="user-name">{name}</span>
