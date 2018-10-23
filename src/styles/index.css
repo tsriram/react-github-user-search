@@ -9,3 +9,7 @@ body {
   margin-right: auto;
   margin-left: auto;
 }
+
+.loading-login {
+  text-align: center;
+}
