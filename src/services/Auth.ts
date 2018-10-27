@@ -8,7 +8,7 @@ class Auth {
     clientID: "xX6Zw8YxPkm3dWwtRn5ObBvEIud3ed2k",
     redirectUri: "http://localhost:3000/callback",
     responseType: "token id_token",
-    scope: "openid"
+    scope: "openid profile"
   });
 
   static getInstance = () => {
@@ -55,12 +55,18 @@ class Auth {
     // history.replace("/");
   }
 
+  getAccessToken() {
+    return localStorage.getItem("access_token");
+  }
+
   isAuthenticated() {
     // Check whether the current time is past the
     // Access Token's expiry time
     const expiresAtToken = localStorage.getItem("expires_at");
+    console.log("expiresAtToken: ", expiresAtToken);
     if (expiresAtToken) {
       const expiresAt = JSON.parse(expiresAtToken);
+      console.log("expiresAt: ", expiresAt);
       return new Date().getTime() < expiresAt;
     } else {
       return false;

@@ -7,6 +7,10 @@ import {
 import { auth } from "../services/Auth";
 import * as React from "react";
 
+if (!auth) {
+  throw new Error("No AUTH");
+}
+
 interface PrivateRouteProps extends RouteProps {
   readonly component:
     | React.ComponentType<RouteComponentProps<any>>
@@ -14,6 +18,7 @@ interface PrivateRouteProps extends RouteProps {
 }
 
 const PrivateRoute = (props: PrivateRouteProps) => {
+  // console.log("Private route auth: ", auth);
   const { component, ...rest } = props;
   const Component = component;
   return (
