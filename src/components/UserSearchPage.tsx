@@ -5,8 +5,6 @@ import UserSearch from "./UserSearch";
 import * as React from "react";
 
 const gitHubToken = auth.getAccessToken();
-console.log("gitHubToken: ", gitHubToken);
-
 const client = new ApolloClient({
   uri: "https://api.github.com/graphql",
   headers: {

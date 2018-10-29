@@ -1,16 +1,41 @@
-import { auth } from "../services/Auth";
+import { githubAuthProvider, firebaseAuth } from "../services/Firebase";
+import { Redirect } from "react-router-dom";
+import { auth } from "src/services/Auth";
 import * as React from "react";
 
-export default class Login extends React.Component<{}, {}> {
-  componentDidMount() {
-    this.login();
+interface LoginState {
+  readonly isAuthenticated: boolean;
+}
+
+export default class Login extends React.Component<{}, LoginState> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      isAuthenticated: false
+    };
   }
 
-  login = () => {
-    auth.login();
+  loginWithPopup = () => {
+    return firebaseAuth()
+      .signInWithPopup(githubAuthProvider)
+      .then((response: any) => {
+        const accessToken =
+          response.credential && response.credential.accessToken;
+        if (accessToken) {
+          auth.setAccessToken(accessToken);
+          this.setState({
+            isAuthenticated: true
+          });
+        }
+      })
+      .catch(error => console.error("Error while logging in :", error));
   };
 
   public render() {
-    return <h3 className="loading-login">Loading login page...</h3>;
+    if (this.state.isAuthenticated) {
+      return <Redirect to="/" />;
+    } else {
+      return <button onClick={this.loginWithPopup}>Login</button>;
+    }
   }
 }
