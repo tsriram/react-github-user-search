@@ -35,7 +35,14 @@ export default class Login extends React.Component<{}, LoginState> {
     if (this.state.isAuthenticated) {
       return <Redirect to="/" />;
     } else {
-      return <button onClick={this.loginWithPopup}>Login</button>;
+      return (
+        <div className="login-page page-container">
+          <h2 className="title">GitHub User Search</h2>
+          <button onClick={this.loginWithPopup} className="login-btn">
+            Login with GitHub
+          </button>
+        </div>
+      );
     }
   }
 }

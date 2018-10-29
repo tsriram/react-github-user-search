@@ -13,3 +13,12 @@ body {
 .loading-login {
   text-align: center;
 }
+
+.login-page {
+  text-align: center;
+}
+
+.login-btn {
+  padding: 8px 12px;
+  font-size: 14px;
+}
