@@ -8,6 +8,7 @@ import SearchBar from "./SearchBar";
 import * as React from "react";
 
 import "../styles/user-search.css";
+import Navbar from "./Navbar";
 
 interface SearchPageState {
   readonly query: string;
@@ -145,6 +146,7 @@ class UserSearch extends React.Component<SearchPageProps, SearchPageState> {
   public render() {
     return (
       <div className="user-search page-container">
+        <Navbar />
         <h2 className="title">GitHub User Search</h2>
         <SearchBar
           query={this.state.query}

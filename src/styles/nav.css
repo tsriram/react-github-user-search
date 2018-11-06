@@ -1,0 +1,11 @@
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 16px;
+}
+
+.nav .avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
