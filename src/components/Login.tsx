@@ -1,18 +1,10 @@
 import { githubAuthProvider, firebaseAuth } from "../services/Firebase";
-import { Redirect } from "react-router-dom";
 import { auth } from "src/services/Auth";
 import * as React from "react";
 
-interface LoginState {
-  readonly isAuthenticated: boolean;
-}
-
-export default class Login extends React.Component<{}, LoginState> {
+export default class Login extends React.Component<{}, {}> {
   constructor(props: any) {
     super(props);
-    this.state = {
-      isAuthenticated: false
-    };
   }
 
   loginWithPopup = () => {
@@ -32,17 +24,13 @@ export default class Login extends React.Component<{}, LoginState> {
   };
 
   public render() {
-    if (this.state.isAuthenticated) {
-      return <Redirect to="/" />;
-    } else {
-      return (
-        <div className="login-page page-container">
-          <h2 className="title">GitHub User Search</h2>
-          <button onClick={this.loginWithPopup} className="login-btn">
-            Login with GitHub
-          </button>
-        </div>
-      );
-    }
+    return (
+      <div className="login-page page-container">
+        <h2 className="title">GitHub User Search</h2>
+        <button onClick={this.loginWithPopup} className="login-btn">
+          Login with GitHub
+        </button>
+      </div>
+    );
   }
 }

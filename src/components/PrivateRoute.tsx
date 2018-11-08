@@ -1,15 +1,7 @@
-import {
-  Route,
-  Redirect,
-  RouteProps,
-  RouteComponentProps
-} from "react-router-dom";
-import { auth } from "../services/Auth";
+import { RouteProps, RouteComponentProps } from "react-router-dom";
+import { AuthContext } from "src/AuthContext";
 import * as React from "react";
-
-if (!auth) {
-  throw new Error("No AUTH");
-}
+import Login from "./Login";
 
 interface PrivateRouteProps extends RouteProps {
   readonly component:
@@ -17,27 +9,18 @@ interface PrivateRouteProps extends RouteProps {
     | React.ComponentType<any>;
 }
 
-const PrivateRoute = (props: PrivateRouteProps) => {
-  // console.log("Private route auth: ", auth);
-  const { component, ...rest } = props;
-  const Component = component;
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        auth.isAuthenticated() && Component ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: props.location }
-            }}
-          />
-        )
-      }
-    />
-  );
-};
+class PrivateRoute extends React.Component<PrivateRouteProps, {}> {
+  render() {
+    const { component, ...rest } = this.props;
+    const Component = component;
+    return (
+      <AuthContext.Consumer>
+        {user => {
+          return user ? <Component {...rest} /> : <Login />;
+        }}
+      </AuthContext.Consumer>
+    );
+  }
+}
 
 export default PrivateRoute;

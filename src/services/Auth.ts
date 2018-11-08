@@ -8,6 +8,10 @@ class Auth {
     return Auth.instance;
   };
 
+  removeAccessToken() {
+    localStorage.removeItem("access_token")
+  }
+
   setAccessToken(token: string) {
     localStorage.setItem("access_token", token);
   }
