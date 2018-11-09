@@ -6,6 +6,11 @@ import * as React from "react";
 import "../styles/nav.css";
 
 class Navbar extends React.Component<{}, {}> {
+  handleSignOut = () => {
+    auth.removeAccessToken();
+    firebaseAuth().signOut();
+  };
+
   render() {
     return (
       <AuthContext.Consumer>
@@ -19,13 +24,7 @@ class Navbar extends React.Component<{}, {}> {
                     className="user-avatar"
                     alt={user.displayName || "user"}
                   />
-                  <a
-                    href="#"
-                    onClick={() => {
-                      firebaseAuth().signOut();
-                      auth.removeAccessToken();
-                    }}
-                  >
+                  <a href="#" onClick={this.handleSignOut}>
                     Sign Out
                   </a>
                 </div>
