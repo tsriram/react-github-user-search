@@ -1,5 +1,6 @@
 class Auth {
   private static instance: Auth;
+  private static ACCESS_TOKEN = "ghus:access_token";
 
   static getInstance = () => {
     if (!Auth.instance) {
@@ -9,19 +10,15 @@ class Auth {
   };
 
   removeAccessToken() {
-    localStorage.removeItem("access_token")
+    localStorage.removeItem(Auth.ACCESS_TOKEN);
   }
 
   setAccessToken(token: string) {
-    localStorage.setItem("access_token", token);
+    localStorage.setItem(Auth.ACCESS_TOKEN, token);
   }
 
   getAccessToken(): string {
-    return localStorage.getItem("access_token") || "";
-  }
-
-  isAuthenticated() {
-    return Boolean(localStorage.getItem("access_token"));
+    return localStorage.getItem(Auth.ACCESS_TOKEN) || "";
   }
 }
 
