@@ -127,7 +127,6 @@ class UserSearch extends React.Component<SearchPageProps, SearchPageState> {
         data.search.pageInfo.hasPreviousPage;
       return (
         <div>
-          <h3>{data.search.userCount.toLocaleString()} Users</h3>
           {data.search.edges.map((edge: any) => {
             return <SearchResult userNode={edge.node} key={edge.node.login} />;
           })}
@@ -149,6 +148,7 @@ class UserSearch extends React.Component<SearchPageProps, SearchPageState> {
   }
 
   public render() {
+    const userCount = this.state.data.search.userCount;
     return (
       <div className="user-search page-container">
         <Navbar />
@@ -158,6 +158,7 @@ class UserSearch extends React.Component<SearchPageProps, SearchPageState> {
           onChange={this.handleQueryChange}
           onSubmit={this.handleSubmit}
         />
+        {userCount && <h3>{userCount.toLocaleString()} Users</h3>}
 
         {this.renderLoading() ||
           this.renderError() ||
