@@ -23,12 +23,14 @@ GraphQL API.
 - To run the app, run `yarn start` (or `npm run start`). Make sure you've
   installed all dependencies by running `yarn install` or `npm install`.
 
-- This app requires a valid GitHub access token to be set as an environment
+- ~This app requires a valid GitHub access token to be set as an environment
   variable. You can generate a new access token by following
-  [this article](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
+  [this article](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)~
 
-  Once you have the token, set it as the value for the variable
-  `REACT_APP_GITHUB_TOKEN` in `.env` file of the app.
+  ~Once you have the token, set it as the value for the variable
+  `REACT_APP_GITHUB_TOKEN` in `.env` file of the app.~ App now has Firebase
+  authentication implemented and any GitHub user can login to access the app.
+  TODO: Handle GitHub token expiry
 
 - To keep things simple, default page size is set to `5`. This can be changed to
   a desired number in `/src/constants.ts`.
