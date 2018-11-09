@@ -122,6 +122,9 @@ class UserSearch extends React.Component<SearchPageProps, SearchPageState> {
   private renderSearchResults() {
     const { data } = this.state;
     if (data.search.userCount !== undefined && data.search.userCount > 0) {
+      const hasPagination =
+        data.search.pageInfo.hasNextPage ||
+        data.search.pageInfo.hasPreviousPage;
       return (
         <div>
           <h3>{data.search.userCount.toLocaleString()} Users</h3>
@@ -129,11 +132,13 @@ class UserSearch extends React.Component<SearchPageProps, SearchPageState> {
             return <SearchResult userNode={edge.node} key={edge.node.login} />;
           })}
 
-          <Pagination
-            pageInfo={data.search.pageInfo}
-            onPreviousClick={this.handlePreviousClick}
-            onNextClick={this.handleNextClick}
-          />
+          {hasPagination && (
+            <Pagination
+              pageInfo={data.search.pageInfo}
+              onPreviousClick={this.handlePreviousClick}
+              onNextClick={this.handleNextClick}
+            />
+          )}
         </div>
       );
     } else if (data.search.userCount === 0) {
