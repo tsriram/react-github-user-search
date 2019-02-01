@@ -1,18 +1,13 @@
-import { RouteProps, RouteComponentProps } from "react-router-dom";
+import { RouteProps } from "react-router-dom";
 import { AuthContext } from "src/AuthContext";
 import * as React from "react";
 import Login from "./Login";
 
-interface PrivateRouteProps extends RouteProps {
-  readonly component:
-    | React.ComponentType<RouteComponentProps<any>>
-    | React.ComponentType<any>;
-}
-
-class PrivateRoute extends React.Component<PrivateRouteProps, {}> {
+class PrivateRoute extends React.Component<RouteProps, {}> {
   render() {
     const { component, ...rest } = this.props;
-    const Component = component;
+    // TODO: fix any
+    const Component: any = component;
     return (
       <AuthContext.Consumer>
         {user => {
